@@ -22,3 +22,4 @@ for distance in range(len(locations_left)):
     total_distance += dist
 
 print(total_distance)
+# answer is 3569916
