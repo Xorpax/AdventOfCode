@@ -16,3 +16,4 @@ for num in locations_left:
     similarity_score += num * r_count
 
 print(similarity_score)
+# answer is 26407426
