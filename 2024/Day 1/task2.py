@@ -1,4 +1,4 @@
-input_file = r"2024\Day 1\Task 2\input.txt"
+input_file = r"2024\Day 1\input2.txt"
 
 # compile separate lists of location IDs
 with open(input_file, "r") as inp:
