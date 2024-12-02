@@ -27,8 +27,6 @@ def check_report(report: list[int]) -> bool:
                 return False
     return True
             
-
-
 def count_safe(reports: list[list[int]]) -> int:
     counter = 0
     for report in reports:
@@ -43,3 +41,4 @@ fp = r"2024\Day 2\Task 1\input.txt"
 parsed_data = get_input(fp)
 safe = count_safe(parsed_data)
 print(safe)
+# answer is 213
