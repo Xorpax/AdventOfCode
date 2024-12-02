@@ -37,7 +37,7 @@ def count_safe(reports: list[list[int]]) -> int:
     return counter
 
 
-fp = r"2024\Day 2\Task 1\input.txt"
+fp = r"2024\Day 2\input1.txt"
 parsed_data = get_input(fp)
 safe = count_safe(parsed_data)
 print(safe)
