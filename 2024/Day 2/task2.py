@@ -34,4 +34,4 @@ if __name__ == "__main__":
     fp = r"2024\Day 2\input2.txt"
     parsed_data = parse_input(fp)
     print(count_safe(parsed_data))
-
+    # answer is 285
