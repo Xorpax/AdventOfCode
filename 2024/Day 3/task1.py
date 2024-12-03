@@ -11,7 +11,7 @@ def format_data(file_path: str) -> list[str]:
 
 def find_mul(instruction: str) -> list[str]:
     """return a list of pairs of valid numbers, e.g. ['101,15', '570,448', '621,492', '659,911', '134,954', '572,608', '392,779']"""
-    pattern = re.compile(r"\bmul\b\(([0-9]{1,3}\s?,\s?[0-9]{1,3})\)")
+    pattern = re.compile(r"mul\(([0-9]{1,3}\s?,\s?[0-9]{1,3})\)")
     return pattern.findall(instruction)
 
 def mul(instructions: list[str]) -> int:
