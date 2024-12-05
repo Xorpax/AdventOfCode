@@ -29,10 +29,7 @@ def count_safe(reports: list[list[int]]) -> int:
     for report in reports:
         if check_report(report):
             counter += 1
-
-
     return counter
-
 
 fp = r"2024\Day 2\input1.txt"
 parsed_data = get_input(fp)
