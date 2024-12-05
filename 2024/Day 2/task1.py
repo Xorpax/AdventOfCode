@@ -1,5 +1,4 @@
 def get_input(file_path: str) -> list[int]:
-    print(file_path)
     with open(file_path, "r") as input_file:
         data = [row.strip().split() for row in input_file.readlines()]
         data = [[int(num) for num in row] for row in data]
@@ -10,10 +9,8 @@ def check_report(report: list[int]) -> bool:
     report_length = len(report)
     max_level = max(report)
     min_level = min(report)
-    print(report)
     if report.index(max_level) > report.index(min_level):
         asc = True
-    print(asc)
 
     for level in range(1, report_length):
         current_level = report[level]
