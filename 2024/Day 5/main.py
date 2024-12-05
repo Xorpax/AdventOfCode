@@ -23,7 +23,6 @@ def order_update(update: list[int], order: list[tuple[int, int]]) -> int:
             i += 1
     return temp[math.ceil(len(temp) / 2) - 1]
 
-
 if __name__ == "__main__":
     file_path = r".\2024\Day 5\input.txt"
     # file_path = r".\2024\Day 5\test.txt"
