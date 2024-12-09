@@ -115,43 +115,45 @@ def go_forward(puzzle_map: list[str], char: str, x, y) -> tuple[list[str], tuple
     current_line = puzzle_map[y]
     go_x, go_y = False, False
 
-    try:
-        if currently_facing == "north" or currently_facing == "south":
-            next_position = puzzle_map[y + offset][x]
-            go_y = True
-        elif currently_facing == "east" or currently_facing == "west":
-            next_position = puzzle_map[y][x + offset]
-            go_x = True
-    except IndexError:
+    if currently_facing == "north" or currently_facing == "south":
         # guard can exit the map
-        puzzle_map[y] = puzzle_map[y].replace(char, "X")
-        return puzzle_map, (x, y), True
-    else:
-        # move forward or turn 90 degrees right in case of an obstacle
-        #obstacle
-        if next_position == "#":
-            turned_char = turn(char)
-            puzzle_map[y] = puzzle_map[y].replace(char, turned_char)
-        # move east/west
-        elif go_x:
-            line_structure = list(current_line)
-            char_index = line_structure.index(char)
-            line_structure[char_index] = "X"
-            line_structure[char_index + offset] = char
-            new_line = "".join(line_structure)
-            puzzle_map[y] = new_line
-        # move north/south
-        elif go_y:
-            current_line_structure = list(current_line)
-            next_line = puzzle_map[y + offset]
-            next_lines_structure = list(next_line)
-            char_index = current_line_structure.index(char)
-            next_lines_structure[char_index] = char
-            new_line_string = "".join(next_lines_structure)
-            puzzle_map[y + offset] = new_line_string
+        if (y == 0 and currently_facing == "north") or (y == len(puzzle_map) - 1 and currently_facing == "south"):
             puzzle_map[y] = puzzle_map[y].replace(char, "X")
+            return puzzle_map, (x, y), True
+        next_position = puzzle_map[y + offset][x]
+        go_y = True
+    elif currently_facing == "east" or currently_facing == "west":
+        # guard can exit the map
+        if (x == 0 and currently_facing == "west") or (x == len(current_line) - 1 and currently_facing == "east"):
+            puzzle_map[y] = puzzle_map[y].replace(char, "X")
+            return puzzle_map, (x, y), True
+        next_position = puzzle_map[y][x + offset]
+        go_x = True
 
-        return puzzle_map, (x, y), False
+    #obstacle
+    if next_position == "#":
+        turned_char = turn(char)
+        puzzle_map[y] = puzzle_map[y].replace(char, turned_char)
+    # move east/west
+    elif go_x:
+        line_structure = list(current_line)
+        char_index = line_structure.index(char)
+        line_structure[char_index] = "X"
+        line_structure[char_index + offset] = char
+        new_line = "".join(line_structure)
+        puzzle_map[y] = new_line
+    # move north/south
+    elif go_y:
+        current_line_structure = list(current_line)
+        next_line = puzzle_map[y + offset]
+        next_lines_structure = list(next_line)
+        char_index = current_line_structure.index(char)
+        next_lines_structure[char_index] = char
+        new_line_string = "".join(next_lines_structure)
+        puzzle_map[y + offset] = new_line_string
+        puzzle_map[y] = puzzle_map[y].replace(char, "X")
+
+    return puzzle_map, (x, y), False
 
 def parse_map(puzzle_map: list[str]):
     states = list(directions.keys())
@@ -176,7 +178,6 @@ if __name__ == "__main__":
     filepath = r".\2024\Day 6\input1.txt"
     start = time.time()
     # puzzle_map = test.split("\n")
-    
     puzzle_map = format_data(filepath)
     
     parse_map(puzzle_map)
